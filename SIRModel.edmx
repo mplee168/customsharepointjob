@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SIRModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2000" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="SIRModelStoreContainer">
+          <EntitySet Name="AuditItem" EntityType="SIRModel.Store.AuditItem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AuditItemContacts" EntityType="SIRModel.Store.AuditItemContacts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Incident" EntityType="SIRModel.Store.Incident" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="IncidentAuditItem" EntityType="SIRModel.Store.IncidentAuditItem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OtherAuditItem" EntityType="SIRModel.Store.OtherAuditItem" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_IncidentAuditItem_AuditItem" Association="SIRModel.Store.FK_IncidentAuditItem_AuditItem">
+            <End Role="AuditItem" EntitySet="AuditItem" />
+            <End Role="IncidentAuditItem" EntitySet="IncidentAuditItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IncidentAuditItem_Incident" Association="SIRModel.Store.FK_IncidentAuditItem_Incident">
+            <End Role="Incident" EntitySet="Incident" />
+            <End Role="IncidentAuditItem" EntitySet="IncidentAuditItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OtherAuditItem_Incident" Association="SIRModel.Store.FK_OtherAuditItem_Incident">
+            <End Role="Incident" EntitySet="Incident" />
+            <End Role="OtherAuditItem" EntitySet="OtherAuditItem" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AuditItem">
+          <Key>
+            <PropertyRef Name="AuditItemID" />
+          </Key>
+          <Property Name="AuditItemID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuditItemContacts">
+          <Key>
+            <PropertyRef Name="AuditItemContactID" />
+          </Key>
+          <Property Name="AuditItemContactID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AuditItemID" Type="int" Nullable="false" />
+          <Property Name="AuditItemContactName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="AuditItemContactEmail" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Incident">
+          <Key>
+            <PropertyRef Name="IncidentID" />
+          </Key>
+          <Property Name="IncidentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IncidentNumber" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="HeatTicketNumber" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ChangeRequestNumber" Type="varchar" MaxLength="50" />
+          <Property Name="ServiceDeskTicketNumber" Type="varchar" MaxLength="50" />
+          <Property Name="TechnicianName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TechnicianEmail" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="TechnicianPhone" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ServiceGroupID" Type="int" Nullable="false" />
+          <Property Name="IssueStartDate" Type="datetime" Nullable="false" />
+          <Property Name="IssueResolutionDate" Type="datetime" Nullable="false" />
+          <Property Name="IssueDeviceID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="IssueLocation" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="IssueDescription" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="IssueSummary" Type="text" Nullable="false" />
+          <Property Name="IssueChronology" Type="text" Nullable="false" />
+          <Property Name="IssueRootCause" Type="text" Nullable="false" />
+          <Property Name="ProcessImprovements" Type="text" Nullable="false" />
+          <Property Name="OtherSystemsAffected" Type="bit" Nullable="false" />
+          <Property Name="OtherSystemsAffectedValue" Type="varchar" MaxLength="255" />
+          <Property Name="TravelRequired" Type="bit" Nullable="false" />
+          <Property Name="SeverityID" Type="int" Nullable="false" />
+          <Property Name="ImpactID" Type="int" Nullable="false" />
+          <Property Name="VisibilityID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IncidentAuditItem">
+          <Key>
+            <PropertyRef Name="IncidentID" />
+            <PropertyRef Name="AuditItemID" />
+          </Key>
+          <Property Name="IncidentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AuditItemID" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OtherAuditItem">
+          <Key>
+            <PropertyRef Name="OtherAuditItemID" />
+          </Key>
+          <Property Name="OtherAuditItemID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="fk_IncidentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_IncidentAuditItem_AuditItem">
+          <End Role="AuditItem" Type="SIRModel.Store.AuditItem" Multiplicity="1" />
+          <End Role="IncidentAuditItem" Type="SIRModel.Store.IncidentAuditItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuditItem">
+              <PropertyRef Name="AuditItemID" />
+            </Principal>
+            <Dependent Role="IncidentAuditItem">
+              <PropertyRef Name="AuditItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IncidentAuditItem_Incident">
+          <End Role="Incident" Type="SIRModel.Store.Incident" Multiplicity="1" />
+          <End Role="IncidentAuditItem" Type="SIRModel.Store.IncidentAuditItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Incident">
+              <PropertyRef Name="IncidentID" />
+            </Principal>
+            <Dependent Role="IncidentAuditItem">
+              <PropertyRef Name="IncidentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OtherAuditItem_Incident">
+          <End Role="Incident" Type="SIRModel.Store.Incident" Multiplicity="1" />
+          <End Role="OtherAuditItem" Type="SIRModel.Store.OtherAuditItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Incident">
+              <PropertyRef Name="IncidentID" />
+            </Principal>
+            <Dependent Role="OtherAuditItem">
+              <PropertyRef Name="fk_IncidentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SIRModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="SIREntities">
+          <EntitySet Name="AuditItem" EntityType="SIRModel.AuditItem" />
+          <EntitySet Name="AuditItemContacts" EntityType="SIRModel.AuditItemContacts" />
+          <EntitySet Name="Incident" EntityType="SIRModel.Incident" />
+          <EntitySet Name="IncidentAuditItem" EntityType="SIRModel.IncidentAuditItem" />
+          <EntitySet Name="OtherAuditItem" EntityType="SIRModel.OtherAuditItem" />
+          <AssociationSet Name="FK_IncidentAuditItem_AuditItem" Association="SIRModel.FK_IncidentAuditItem_AuditItem">
+            <End Role="AuditItem" EntitySet="AuditItem" />
+            <End Role="IncidentAuditItem" EntitySet="IncidentAuditItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IncidentAuditItem_Incident" Association="SIRModel.FK_IncidentAuditItem_Incident">
+            <End Role="Incident" EntitySet="Incident" />
+            <End Role="IncidentAuditItem" EntitySet="IncidentAuditItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OtherAuditItem_Incident" Association="SIRModel.FK_OtherAuditItem_Incident">
+            <End Role="Incident" EntitySet="Incident" />
+            <End Role="OtherAuditItem" EntitySet="OtherAuditItem" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AuditItem">
+          <Key>
+            <PropertyRef Name="AuditItemID" />
+          </Key>
+          <Property Name="AuditItemID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="IncidentAuditItem" Relationship="SIRModel.FK_IncidentAuditItem_AuditItem" FromRole="AuditItem" ToRole="IncidentAuditItem" />
+        </EntityType>
+        <EntityType Name="AuditItemContacts">
+          <Key>
+            <PropertyRef Name="AuditItemContactID" />
+          </Key>
+          <Property Name="AuditItemContactID" Type="Int32" Nullable="false" />
+          <Property Name="AuditItemID" Type="Int32" Nullable="false" />
+          <Property Name="AuditItemContactName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="AuditItemContactEmail" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Incident">
+          <Key>
+            <PropertyRef Name="IncidentID" />
+          </Key>
+          <Property Name="IncidentID" Type="Guid" Nullable="false" />
+          <Property Name="IncidentNumber" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="HeatTicketNumber" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ChangeRequestNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ServiceDeskTicketNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TechnicianName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TechnicianEmail" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="TechnicianPhone" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ServiceGroupID" Type="Int32" Nullable="false" />
+          <Property Name="IssueStartDate" Type="DateTime" Nullable="false" />
+          <Property Name="IssueResolutionDate" Type="DateTime" Nullable="false" />
+          <Property Name="IssueDeviceID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IssueLocation" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="IssueDescription" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="IssueSummary" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="IssueChronology" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="IssueRootCause" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="ProcessImprovements" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="OtherSystemsAffected" Type="Boolean" Nullable="false" />
+          <Property Name="OtherSystemsAffectedValue" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="TravelRequired" Type="Boolean" Nullable="false" />
+          <Property Name="SeverityID" Type="Int32" Nullable="false" />
+          <Property Name="ImpactID" Type="Int32" Nullable="false" />
+          <Property Name="VisibilityID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="IncidentAuditItem" Relationship="SIRModel.FK_IncidentAuditItem_Incident" FromRole="Incident" ToRole="IncidentAuditItem" />
+          <NavigationProperty Name="OtherAuditItem" Relationship="SIRModel.FK_OtherAuditItem_Incident" FromRole="Incident" ToRole="OtherAuditItem" />
+        </EntityType>
+        <EntityType Name="IncidentAuditItem">
+          <Key>
+            <PropertyRef Name="IncidentID" />
+            <PropertyRef Name="AuditItemID" />
+          </Key>
+          <Property Name="IncidentID" Type="Guid" Nullable="false" />
+          <Property Name="AuditItemID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="AuditItem" Relationship="SIRModel.FK_IncidentAuditItem_AuditItem" FromRole="IncidentAuditItem" ToRole="AuditItem" />
+          <NavigationProperty Name="Incident" Relationship="SIRModel.FK_IncidentAuditItem_Incident" FromRole="IncidentAuditItem" ToRole="Incident" />
+        </EntityType>
+        <EntityType Name="OtherAuditItem">
+          <Key>
+            <PropertyRef Name="OtherAuditItemID" />
+          </Key>
+          <Property Name="OtherAuditItemID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Incident" Relationship="SIRModel.FK_OtherAuditItem_Incident" FromRole="OtherAuditItem" ToRole="Incident" />
+        </EntityType>
+        <Association Name="FK_IncidentAuditItem_AuditItem">
+          <End Role="AuditItem" Type="SIRModel.AuditItem" Multiplicity="1" />
+          <End Role="IncidentAuditItem" Type="SIRModel.IncidentAuditItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuditItem">
+              <PropertyRef Name="AuditItemID" />
+            </Principal>
+            <Dependent Role="IncidentAuditItem">
+              <PropertyRef Name="AuditItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IncidentAuditItem_Incident">
+          <End Role="Incident" Type="SIRModel.Incident" Multiplicity="1" />
+          <End Role="IncidentAuditItem" Type="SIRModel.IncidentAuditItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Incident">
+              <PropertyRef Name="IncidentID" />
+            </Principal>
+            <Dependent Role="IncidentAuditItem">
+              <PropertyRef Name="IncidentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OtherAuditItem_Incident">
+          <End Role="Incident" Type="SIRModel.Incident" Multiplicity="1" />
+          <End Role="OtherAuditItem" Type="SIRModel.OtherAuditItem" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="SIRModelStoreContainer" CdmEntityContainer="SIREntities">
+          <EntitySetMapping Name="AuditItem">
+            <EntityTypeMapping TypeName="IsTypeOf(SIRModel.AuditItem)">
+              <MappingFragment StoreEntitySet="AuditItem">
+                <ScalarProperty Name="AuditItemID" ColumnName="AuditItemID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuditItemContacts">
+            <EntityTypeMapping TypeName="IsTypeOf(SIRModel.AuditItemContacts)">
+              <MappingFragment StoreEntitySet="AuditItemContacts">
+                <ScalarProperty Name="AuditItemContactID" ColumnName="AuditItemContactID" />
+                <ScalarProperty Name="AuditItemID" ColumnName="AuditItemID" />
+                <ScalarProperty Name="AuditItemContactName" ColumnName="AuditItemContactName" />
+                <ScalarProperty Name="AuditItemContactEmail" ColumnName="AuditItemContactEmail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Incident">
+            <EntityTypeMapping TypeName="IsTypeOf(SIRModel.Incident)">
+              <MappingFragment StoreEntitySet="Incident">
+                <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+                <ScalarProperty Name="IncidentNumber" ColumnName="IncidentNumber" />
+                <ScalarProperty Name="HeatTicketNumber" ColumnName="HeatTicketNumber" />
+                <ScalarProperty Name="ChangeRequestNumber" ColumnName="ChangeRequestNumber" />
+                <ScalarProperty Name="ServiceDeskTicketNumber" ColumnName="ServiceDeskTicketNumber" />
+                <ScalarProperty Name="TechnicianName" ColumnName="TechnicianName" />
+                <ScalarProperty Name="TechnicianEmail" ColumnName="TechnicianEmail" />
+                <ScalarProperty Name="TechnicianPhone" ColumnName="TechnicianPhone" />
+                <ScalarProperty Name="ServiceGroupID" ColumnName="ServiceGroupID" />
+                <ScalarProperty Name="IssueStartDate" ColumnName="IssueStartDate" />
+                <ScalarProperty Name="IssueResolutionDate" ColumnName="IssueResolutionDate" />
+                <ScalarProperty Name="IssueDeviceID" ColumnName="IssueDeviceID" />
+                <ScalarProperty Name="IssueLocation" ColumnName="IssueLocation" />
+                <ScalarProperty Name="IssueDescription" ColumnName="IssueDescription" />
+                <ScalarProperty Name="IssueSummary" ColumnName="IssueSummary" />
+                <ScalarProperty Name="IssueChronology" ColumnName="IssueChronology" />
+                <ScalarProperty Name="IssueRootCause" ColumnName="IssueRootCause" />
+                <ScalarProperty Name="ProcessImprovements" ColumnName="ProcessImprovements" />
+                <ScalarProperty Name="OtherSystemsAffected" ColumnName="OtherSystemsAffected" />
+                <ScalarProperty Name="OtherSystemsAffectedValue" ColumnName="OtherSystemsAffectedValue" />
+                <ScalarProperty Name="TravelRequired" ColumnName="TravelRequired" />
+                <ScalarProperty Name="SeverityID" ColumnName="SeverityID" />
+                <ScalarProperty Name="ImpactID" ColumnName="ImpactID" />
+                <ScalarProperty Name="VisibilityID" ColumnName="VisibilityID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IncidentAuditItem">
+            <EntityTypeMapping TypeName="IsTypeOf(SIRModel.IncidentAuditItem)">
+              <MappingFragment StoreEntitySet="IncidentAuditItem">
+                <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+                <ScalarProperty Name="AuditItemID" ColumnName="AuditItemID" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OtherAuditItem">
+            <EntityTypeMapping TypeName="IsTypeOf(SIRModel.OtherAuditItem)">
+              <MappingFragment StoreEntitySet="OtherAuditItem">
+                <ScalarProperty Name="OtherAuditItemID" ColumnName="OtherAuditItemID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_IncidentAuditItem_AuditItem" TypeName="SIRModel.FK_IncidentAuditItem_AuditItem" StoreEntitySet="IncidentAuditItem">
+            <EndProperty Name="AuditItem">
+              <ScalarProperty Name="AuditItemID" ColumnName="AuditItemID" />
+            </EndProperty>
+            <EndProperty Name="IncidentAuditItem">
+              <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+              <ScalarProperty Name="AuditItemID" ColumnName="AuditItemID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_IncidentAuditItem_Incident" TypeName="SIRModel.FK_IncidentAuditItem_Incident" StoreEntitySet="IncidentAuditItem">
+            <EndProperty Name="Incident">
+              <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+            </EndProperty>
+            <EndProperty Name="IncidentAuditItem">
+              <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+              <ScalarProperty Name="AuditItemID" ColumnName="AuditItemID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_OtherAuditItem_Incident" TypeName="SIRModel.FK_OtherAuditItem_Incident" StoreEntitySet="OtherAuditItem">
+            <EndProperty Name="Incident">
+              <ScalarProperty Name="IncidentID" ColumnName="fk_IncidentID" />
+            </EndProperty>
+            <EndProperty Name="OtherAuditItem">
+              <ScalarProperty Name="OtherAuditItemID" ColumnName="OtherAuditItemID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="SIRModel" ZoomLevel="83">
+        <EntityTypeShape EntityType="SIRModel.AuditItem" Width="1.5" PointX="0.75" PointY="9" Height="2.4140429687499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIRModel.AuditItemContacts" Width="1.5" PointX="5.75" PointY="1.375" Height="2.5783902994791665" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIRModel.Incident" Width="1.5" PointX="0.75" PointY="1.75" Height="6.1940315755208335" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIRModel.IncidentAuditItem" Width="1.5" PointX="3" PointY="0.75" Height="2.2496956380208335" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIRModel.OtherAuditItem" Width="1.5" PointX="3" PointY="4.125" Height="1.5923063151041674" IsExpanded="true" />
+        <AssociationConnector Association="SIRModel.FK_IncidentAuditItem_AuditItem" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="10.207021484375" />
+          <ConnectorPoint PointX="2.625" PointY="10.207021484375" />
+          <ConnectorPoint PointX="2.625" PointY="1.8748478190104168" />
+          <ConnectorPoint PointX="3" PointY="1.8748478190104168" /></AssociationConnector>
+        <AssociationConnector Association="SIRModel.FK_IncidentAuditItem_Incident" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.4997717285156251" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="2.4997717285156247" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="2.4997717285156251" />
+          <ConnectorPoint PointX="3" PointY="2.4997717285156251" /></AssociationConnector>
+        <AssociationConnector Association="SIRModel.FK_OtherAuditItem_Incident" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.9211531575520837" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="4.9211531575520828" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="4.9211531575520837" />
+          <ConnectorPoint PointX="3" PointY="4.9211531575520837" /></AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

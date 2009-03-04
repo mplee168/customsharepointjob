@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomSharePointJob", "CustomSharePointJob.csproj", "{DAD701F5-8B19-4F03-9951-07B648C52D22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{56F096EE-9C3B-452C-9A47-EEE18E6B16EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DB22B517-30F4-4A54-B3C8-8B53E4BD9B48}"
+	ProjectSection(SolutionItems) = preProject
+		CustomSharePointJob.vsmdi = CustomSharePointJob.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = CustomSharePointJob.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAD701F5-8B19-4F03-9951-07B648C52D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAD701F5-8B19-4F03-9951-07B648C52D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAD701F5-8B19-4F03-9951-07B648C52D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAD701F5-8B19-4F03-9951-07B648C52D22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F096EE-9C3B-452C-9A47-EEE18E6B16EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F096EE-9C3B-452C-9A47-EEE18E6B16EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F096EE-9C3B-452C-9A47-EEE18E6B16EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F096EE-9C3B-452C-9A47-EEE18E6B16EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

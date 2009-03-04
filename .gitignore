@@ -1,0 +1,13 @@
+*.user
+*.suo
+*.exe
+*.log
+_Resharper.*
+*.inf
+*.rpt
+*.sln.cache
+bin
+obj
+TestResults
+TestProject/bin
+TestProject/obj

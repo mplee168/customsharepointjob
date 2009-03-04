@@ -1,0 +1,13 @@
+.OPTION Explicit
+.Set DiskDirectoryTemplate=CDROM
+.Set CompressionType=MSZIP
+.Set UniqueFiles=Off
+.Set Cabinet=On
+;**************************************************
+manifest.xml
+bin\debug\TimerJob.dll
+
+.Set DestinationDir=TimerJob
+feature.xml
+
+;***End

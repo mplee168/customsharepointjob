@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project DefaultTargets="BuildSharePointPackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MakeCabPath>"MAKECAB.EXE"</MakeCabPath>
+  </PropertyGroup>
+  
+  <Target Name="BuildSharePointPackage">
+    <Exec Command="$(MakeCabPath) /F BuildSharePointPackage.ddf /D CabinetNameTemplate=$(MSBuildProjectName).wsp /D DiskDirectory1=$(OutputPath)SpPackage\"/>
+    <Exec Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'"
+      Command="$(MakeCabPath) /F BuildSharePointPackage.ddf /D CabinetNameTemplate=$(MSBuildProjectName).cab /D DiskDirectory1=$(OutputPath)SpPackage\"/>
+  </Target>
+</Project>

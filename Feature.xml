@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/"
+         Id="{AADEAD87-071E-4112-ADD0-9CAE6151066E}"
+         Title="TimerJob"
+         Description="Description of TimerJob."
+         Scope="WebApplication"
+         Hidden="TRUE"
+         Version="1.0.0.0"
+         ReceiverAssembly="TimerJob, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c439351ae731200c"
+         ReceiverClass="SharePointJobs.TimerJobInstaller">
+</Feature>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/"
+          DeploymentServerType="WebFrontEnd"
+          ResetWebServer="TRUE"
+          SolutionId="{84B948BC-73E0-4eab-986D-750BEF35908B}">
+  <Assemblies>
+    <Assembly DeploymentTarget="GlobalAssemblyCache"
+              Location="TimerJob.dll"/>
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="TimerJob\feature.xml"/>
+  </FeatureManifests>
+</Solution>

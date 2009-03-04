@@ -1,0 +1,31 @@
+<VSTemplate Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Custom SharePoint Job</Name>
+    <Description>SharePoint Job Template with Deployment Feature</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>SharePointJobs</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$projectname$.csproj" File="CustomSharePointJob.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="BuildSharePointPackage.ddf">BuildSharePointPackage.ddf</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="BuildSharePointPackage.Targets">BuildSharePointPackage.Targets</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Feature.xml">Feature.xml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Manifest.xml">Manifest.xml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="setup.bat">setup.bat</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="SharePointJob.snk">SharePointJob.snk</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.cs">Job.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$Installer.cs">JobInstaller.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
