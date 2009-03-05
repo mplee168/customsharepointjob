@@ -7,7 +7,7 @@
     <ProjectGuid>{DAD701F5-8B19-4F03-9951-07B648C52D22}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>$projectname$</RootNamespace>
+    <RootNamespace>SharePointJobs</RootNamespace>
     <AssemblyName>TimerJob</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Properties\SharePointJob.snk</AssemblyOriginatorKeyFile>
@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Import.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="JobInstaller.cs" />
     <Compile Include="PendingReminder.cs" />

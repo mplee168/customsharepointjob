@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using SIRModel;
-
 namespace SharePointJobs
 {
 	public class PendingReminder

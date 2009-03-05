@@ -9,13 +9,13 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SIRModel", "FK_IncidentAuditItem_AuditItem", "AuditItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIRModel.AuditItem), "IncidentAuditItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIRModel.IncidentAuditItem))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SIRModel", "FK_IncidentAuditItem_Incident", "Incident", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIRModel.Incident), "IncidentAuditItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIRModel.IncidentAuditItem))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SIRModel", "FK_OtherAuditItem_Incident", "Incident", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIRModel.Incident), "OtherAuditItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIRModel.OtherAuditItem))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SIRModel", "FK_IncidentAuditItem_AuditItem", "AuditItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SharePointJobs.AuditItem), "IncidentAuditItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SharePointJobs.IncidentAuditItem))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SIRModel", "FK_IncidentAuditItem_Incident", "Incident", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SharePointJobs.Incident), "IncidentAuditItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SharePointJobs.IncidentAuditItem))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SIRModel", "FK_OtherAuditItem_Incident", "Incident", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SharePointJobs.Incident), "OtherAuditItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SharePointJobs.OtherAuditItem))]
 
 // Original file name:
-// Generation date: 3/3/2009 10:04:39 AM
-namespace SIRModel
+// Generation date: 3/5/2009 9:26:38 AM
+namespace SharePointJobs
 {
     
     /// <summary>
