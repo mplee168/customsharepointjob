@@ -103,5 +103,17 @@ namespace TestProject
             pr.Relation();
         }
 
+        [TestMethod]
+        public void TestAddConnectionString()
+        {
+            WebConfigModifier.addConnectionString();
+        }
+
+        [TestMethod]
+        public void TestRemoveConnectionString()
+        {
+            WebConfigModifier.removeConnectionString();
+        }
+
     }
 }

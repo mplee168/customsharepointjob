@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
 
@@ -90,5 +91,75 @@ namespace SharePointJobs {
         }
 
     }
+
+    public void addConnectionString()
+    {
+        SPWebApplication webApp = SPWebApplication.Lookup(new Uri("http://litware"));
+        SPWebConfigModification mod = new SPWebConfigModification("add[@name=\"MyConnectionString\"]", "configuration/connectionStrings");
+        mod.Owner = "AnOwner"; //WebConfigModificationFeatureReceiver.OwnerId
+        mod.Type = SPWebConfigModification.SPWebConfigModificationType.EnsureChildNode;
+        mod.Value = String.Format("<add name=\"{0}\" connectionString=\"{1}\" providerName=\"{2}\">", "MyConnectionString", "connstring goes here", "provider goes here");
+        webApp.WebConfigModifications.Add(mod);
+        webApp.Update();
+        webApp.Farm.Services.GetValue<SPWebService>().ApplyWebConfigModifications(); 
+    }
+
+    public void remoteConnectionString()
+    {
+        SPWebConfigModification configModFound = null;
+        SPWebApplication webApp = SPWebApplication.Lookup(new Uri("http://litware"));
+        //Collection<SPWebConfigModification> modsCollection = webApp.WebConfigModifications;
+        var modsCollection = webApp.WebConfigModifications;
+        for (int i = 0; i < modsCollection.Count; i++)
+        {
+
+            if (modsCollection[i].Owner == "AnOwner" && modsCollection[i].Name == "add[@name=\"MyConnectionString\"]")
+                configModFound = modsCollection[i];
+        }
+
+        if (configModFound != null)
+        {
+            modsCollection.Remove(configModFound);
+            webApp.Update();
+            webApp.Farm.Services.GetValue<SPWebService>().ApplyWebConfigModifications();
+        } 
+    }
   }
+
+    public class WebConfigModifier
+    {
+        public static void addConnectionString()
+        {
+            SPWebApplication webApp = SPWebApplication.Lookup(new Uri(@"http://apldevmoss:33768/sites/TopLevelSiteCollection"));
+            SPWebConfigModification mod = new SPWebConfigModification("add[@name=\"MyConnectionString\"]", "configuration/connectionStrings");
+            mod.Owner = "AnOwner"; //WebConfigModificationFeatureReceiver.OwnerId
+            mod.Type = SPWebConfigModification.SPWebConfigModificationType.EnsureChildNode;
+            mod.Value = String.Format("<add name=\"{0}\" connectionString=\"{1}\" providerName=\"{2}\" />", "MyConnectionString", "connstring goes here", "provider goes here");
+            webApp.WebConfigModifications.Add(mod);
+            webApp.Update();
+            webApp.Farm.Services.GetValue<SPWebService>().ApplyWebConfigModifications();
+        }
+
+        public static void removeConnectionString()
+        {
+            SPWebConfigModification configModFound = null;
+            SPWebApplication webApp = SPWebApplication.Lookup(new Uri("http://apldevmoss:33768/sites/TopLevelSiteCollection"));
+            //Collection<SPWebConfigModification> modsCollection = webApp.WebConfigModifications;
+            var modsCollection = webApp.WebConfigModifications;
+            for (int i = 0; i < modsCollection.Count; i++)
+            {
+
+                if (modsCollection[i].Owner == "AnOwner" && modsCollection[i].Name == "add[@name=\"MyConnectionString\"]")
+                    configModFound = modsCollection[i];
+            }
+
+            if (configModFound != null)
+            {
+                modsCollection.Remove(configModFound);
+                webApp.Update();
+                webApp.Farm.Services.GetValue<SPWebService>().ApplyWebConfigModifications();
+            }
+        }
+
+    }
 }
