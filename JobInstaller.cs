@@ -132,7 +132,7 @@ namespace SharePointJobs {
         {
             SPWebApplication webApp = SPWebApplication.Lookup(new Uri(@"http://apldevmoss:33768/sites/TopLevelSiteCollection"));
             SPWebConfigModification mod = new SPWebConfigModification("add[@name=\"MyConnectionString\"]", "configuration/connectionStrings");
-            mod.Owner = "AnOwner"; //WebConfigModificationFeatureReceiver.OwnerId
+            mod.Owner = "AnOwner"; // WebConfigModificationFeatureReceiver.OwnerId;
             mod.Type = SPWebConfigModification.SPWebConfigModificationType.EnsureChildNode;
             mod.Value = String.Format("<add name=\"{0}\" connectionString=\"{1}\" providerName=\"{2}\" />", "MyConnectionString", "connstring goes here", "provider goes here");
             webApp.WebConfigModifications.Add(mod);
