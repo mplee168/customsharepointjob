@@ -65,6 +65,7 @@ namespace SharePointJobs {
         //WriteToEvtLog("Finish Writing to file", EventLogEntryType.Warning);
     }
 
+/*
     static string sLog = "Application";
     static string sSource = "TimerJob";
 
@@ -77,6 +78,6 @@ namespace SharePointJobs {
         EventLog.WriteEntry(sSource, evt, evtType);
 
     }
-
+*/
   }
 }
