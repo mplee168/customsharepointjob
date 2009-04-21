@@ -422,7 +422,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="SIRModel" ZoomLevel="83">
+      <Diagram Name="SIRModel" ZoomLevel="78">
         <EntityTypeShape EntityType="SIRModel.AuditItem" Width="1.5" PointX="0.75" PointY="9" Height="2.4140429687499996" IsExpanded="true" />
         <EntityTypeShape EntityType="SIRModel.AuditItemContacts" Width="1.5" PointX="5.75" PointY="1.375" Height="2.5783902994791665" IsExpanded="true" />
         <EntityTypeShape EntityType="SIRModel.Incident" Width="1.5" PointX="0.75" PointY="1.75" Height="6.1940315755208335" IsExpanded="true" />

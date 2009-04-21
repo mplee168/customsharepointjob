@@ -110,7 +110,10 @@ namespace SharePointJobs
             using (SIREntities context = new SIREntities())
             {
 
-                var ia = context.IncidentAuditItem.Include("AuditITem").First(a => a.CreatedBy == "pxlee");
+                //Insert();
+
+                var ia = context.IncidentAuditItem.Include("AuditITem").First(a => a.CreatedBy.Contains("pxlee"));
+                //var ia = context.IncidentAuditItem.First(a => a.CreatedBy == "DEVOLS\\pxlee");
                 if (ia != null)
                     Console.WriteLine(ia.AuditItem.Description);
             }
