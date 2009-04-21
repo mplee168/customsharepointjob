@@ -1,5 +1,7 @@
 using System;
+using System.Configuration;
 using System.Collections.Generic;
+using System.Web.Configuration;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
 
@@ -128,7 +130,7 @@ namespace SharePointJobs {
 
     public class WebConfigModifier
     {
-        public static void addConnectionString()
+        public static void addConnectionString(string url)
         {
             SPWebApplication webApp = SPWebApplication.Lookup(new Uri(@"http://apldevmoss:33768/sites/TopLevelSiteCollection"));
             SPWebConfigModification mod = new SPWebConfigModification("add[@name=\"MyConnectionString\"]", "configuration/connectionStrings");
@@ -140,7 +142,7 @@ namespace SharePointJobs {
             webApp.Farm.Services.GetValue<SPWebService>().ApplyWebConfigModifications();
         }
 
-        public static void removeConnectionString()
+        public static void removeConnectionString(string url)
         {
             SPWebConfigModification configModFound = null;
             SPWebApplication webApp = SPWebApplication.Lookup(new Uri("http://apldevmoss:33768/sites/TopLevelSiteCollection"));
@@ -161,5 +163,74 @@ namespace SharePointJobs {
             }
         }
 
+        public static void DisplayConnectionString(string url)
+        {
+
+            SPWebApplication webApp = SPWebApplication.Lookup(new Uri("http://apldevmoss:33768/sites/TopLevelSiteCollection"));
+
+            System.Configuration.Configuration config = WebConfigurationManager.OpenWebConfiguration("/", webApp.Name) as System.Configuration.Configuration;
+
+            
+            ConnectionStringSettingsCollection connectionStrings = config.ConnectionStrings.ConnectionStrings;
+
+            /*
+            // Get the connectionStrings section.
+            ConnectionStringsSection connectionStringsSection =
+                WebConfigurationManager.GetSection("connectionStrings")
+                as ConnectionStringsSection;
+            
+
+            // Get the connectionStrings key,value pairs collection.
+            ConnectionStringSettingsCollection connectionStrings =
+                connectionStringsSection.ConnectionStrings;
+            */
+            // Get the collection enumerator.
+            //IEnumerator connectionStringsEnum =
+            //    connectionStrings.GetEnumerator();
+
+           var connectionStringsEnum =
+                connectionStrings.GetEnumerator();
+
+            // Loop through the collection and 
+            // display the connectionStrings key, value pairs.
+            int i = 0;
+            Console.WriteLine("[Display the connectionStrings] for url: " + url);
+            while (connectionStringsEnum.MoveNext())
+            {
+                string name = connectionStrings[i].Name;
+                Console.WriteLine("Name: {0} Value: {1}",
+                name, connectionStrings[name]);
+                i += 1;
+            }
+
+            Console.WriteLine();
+
+        }
+
+        public static void DisplayAppSettings(string url)
+        {
+
+            SPWebApplication webApp = SPWebApplication.Lookup(new Uri("http://apldevmoss:33768/sites/TopLevelSiteCollection"));
+
+            // Get the configuration object for a Web application
+            // running on the local server. 
+            System.Configuration.Configuration config = WebConfigurationManager.OpenWebConfiguration("/configTest", webApp.Name)
+                as System.Configuration.Configuration;
+
+            // Get the appSettings.
+            KeyValueConfigurationCollection appSettings = config.AppSettings.Settings;
+
+
+            // Loop through the collection and
+            // display the appSettings key, value pairs.
+            Console.WriteLine("[appSettings for app at: {0}]", url);
+            foreach (string key in appSettings.AllKeys)
+            {
+                Console.WriteLine("Name: {0} Value: {1}",
+                key, appSettings[key].Value);
+            }
+
+            Console.WriteLine();
+        }
     }
 }

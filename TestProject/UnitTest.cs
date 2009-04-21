@@ -14,6 +14,7 @@ namespace TestProject
     [TestClass]
     public class UnitTest
     {
+        const string url = "http://apldevmoss:33768/sites/TopLevelSiteCollection";
         public UnitTest()
         {
             //
@@ -106,14 +107,39 @@ namespace TestProject
         [TestMethod]
         public void TestAddConnectionString()
         {
-            WebConfigModifier.addConnectionString();
+            WebConfigModifier.addConnectionString(url);
         }
 
         [TestMethod]
         public void TestRemoveConnectionString()
         {
-            WebConfigModifier.removeConnectionString();
+            WebConfigModifier.removeConnectionString(url);
         }
+
+        [TestMethod]
+        public void TestSplit()
+        {
+            List<string> testString = new List<string> { @"701;#chris.schwimmer@apollogrp.edu",@"5358;#(602) 557-6941", "pong.lee@apollogrp.edu", @"5358;#pong.lee@apollogrp.edu"};
+            foreach (var s in testString)
+            {
+                var splits = s.Split( new string[] {";#"}, StringSplitOptions.RemoveEmptyEntries );
+                Console.WriteLine(splits[splits.Length - 1]);
+            }
+
+        }
+
+        [TestMethod]
+        public void TestWebconfigConnectionStringReading()
+        {
+            WebConfigModifier.DisplayConnectionString(url);
+        }
+
+        [TestMethod]
+        public void TestWebconfigAppSettingsReading()
+        {
+            WebConfigModifier.DisplayAppSettings(url);
+        }
+
 
     }
 }
